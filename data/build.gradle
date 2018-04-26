@@ -37,7 +37,9 @@ ext {
 }
 
 dependencies {
+
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation project(':domain')
 
     implementation "com.android.support:appcompat-v7:$supportLibraryVersion"
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
