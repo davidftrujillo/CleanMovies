@@ -15,9 +15,16 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
+        debug {
+            // Both Api key and token are in gradle.properties file from local .gradle directory
+            buildConfigField("String", "TMDB_ApiKey", TheMovieDBApiKey)
+            buildConfigField("String", "TMDB_Token", TheMovieDBToken)
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField("String", "TMDB_ApiKey", TheMovieDBApiKey)
+            buildConfigField("String", "TMDB_Token", TheMovieDBToken)
         }
     }
 }
