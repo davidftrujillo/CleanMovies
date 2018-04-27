@@ -20,9 +20,16 @@ android {
     }
 
     buildTypes {
+        debug {
+            // Both Api key and token are in gradle.properties file from local .gradle directory
+            buildConfigField("String", "TMDB_ApiKey", TheMovieDBApiKey)
+            buildConfigField("String", "TMDB_Token", TheMovieDBToken)
+        }
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            buildConfigField("String", "TMDB_ApiKey", TheMovieDBApiKey)
+            buildConfigField("String", "TMDB_Token", TheMovieDBToken)
         }
     }
 
@@ -46,6 +53,8 @@ dependencies {
     implementation "com.android.support:appcompat-v7:$supportLibraryVersion"
     implementation "com.squareup.retrofit2:retrofit:$retrofitVersion"
     implementation "com.squareup.okhttp3:okhttp:$okHttpVersion"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofitVersion"
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
     implementation "com.google.code.gson:gson:$gsonVersion"
     implementation "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
     implementation "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
