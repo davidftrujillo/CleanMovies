@@ -2,11 +2,14 @@ package com.dft3dev.data.mapper
 
 import com.dft3dev.data.model.GenreEntity
 import com.dft3dev.domain.Genre
+import javax.inject.Inject
+import javax.inject.Singleton
 
 /**
  * Created by david on 27/4/18.
  */
-class GenreEntityMapper {
+@Singleton
+class GenreEntityMapper @Inject constructor() {
 
     fun map(genre: GenreEntity): Genre {
 

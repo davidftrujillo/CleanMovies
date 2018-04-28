@@ -3,10 +3,12 @@ package com.dft3dev.data.executor
 import com.dft3dev.domain.executor.ThreadExecutor
 import java.util.concurrent.*
 import javax.inject.Inject
+import javax.inject.Singleton
 
 /**
  * Created by david on 27/4/18.
  */
+@Singleton
 open class JobExecutor @Inject constructor(): ThreadExecutor {
 
     private val workQueue: LinkedBlockingQueue<Runnable>

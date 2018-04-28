@@ -41,7 +41,6 @@ ext {
     retrofitVersion = '2.4.0'
     okHttpVersion = '3.10.0'
     gsonVersion = '2.8.2'
-    rxAndroidVersion = '2.0.2'
 }
 
 dependencies {
@@ -57,7 +56,7 @@ dependencies {
     implementation "com.google.code.gson:gson:$gsonVersion"
     implementation "io.reactivex.rxjava2:rxjava:$rxJavaVersion"
     implementation "io.reactivex.rxjava2:rxandroid:$rxAndroidVersion"
-    implementation "com.google.dagger:dagger-compiler:$daggerVersion"
+    kapt "com.google.dagger:dagger-compiler:$daggerVersion"
     implementation "com.google.dagger:dagger:$daggerVersion"
 
     testImplementation "junit:junit:$jUnitVersion"
