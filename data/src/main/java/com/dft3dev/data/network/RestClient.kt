@@ -1,12 +1,7 @@
 package com.dft3dev.data.network
 
 import com.dft3dev.data.BuildConfig
-import io.reactivex.android.plugins.RxAndroidPlugins
-import io.reactivex.plugins.RxJavaPlugins
-import okhttp3.Interceptor
 import okhttp3.OkHttpClient
-import okhttp3.Request
-import okhttp3.Response
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
@@ -47,7 +42,7 @@ object RestClient {
         return httpClientBuilder.build()
     }
 
-    private fun createRetrofit(): Retrofit {
+    private fun createRetrofit() {
 
         retrofit = Retrofit.Builder()
                 .baseUrl("https://api.themoviedb.org/3/")
@@ -55,5 +50,7 @@ object RestClient {
                 .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
                 .client(createOkHttpClient())
                 .build()
+
+        this.apiService = retrofit?.create(ApiService::class.java)
     }
 }
