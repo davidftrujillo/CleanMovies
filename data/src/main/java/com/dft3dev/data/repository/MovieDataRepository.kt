@@ -25,12 +25,14 @@ class MovieDataRepository @Inject constructor(
                 .flatMap {
 
                     if (dataSource is RemoteMovieDataSource) {
-                        saveMovie(it).toObservable()
+                        saveMovie(it).toSingleDefault(it).toObservable()
                     } else {
                         Observable.just(it)
                     }
                 }
-                .map(this.movieMapper::map)
+                .map {
+                    this.movieMapper.map(it)
+                }
     }
 
     private fun saveMovie(movie: MovieEntity): Completable {

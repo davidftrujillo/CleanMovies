@@ -1,10 +1,12 @@
 package com.dft3dev.data.repository.datasource
 
 import javax.inject.Inject
+import javax.inject.Singleton
 
 /**
  * Created by david on 27/4/18.
  */
+@Singleton
 class MovieDataStoreFactory @Inject constructor(
         private val movieLocalDataSource: LocalMovieDataSource,
         private val movieRemoteDataSource: RemoteMovieDataSource) {

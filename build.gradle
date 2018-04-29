@@ -45,4 +45,7 @@ ext {
     rxJavaVersion = '2.1.12'
     daggerVersion = '2.15'
     glassfishAnnotationVersion = '10.0-b28'
+    rxAndroidVersion = '2.0.2'
+    retrofitVersion = '2.4.0'
+    timberVersion = '4.7.0'
 }
