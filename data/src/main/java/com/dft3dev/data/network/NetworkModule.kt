@@ -4,9 +4,12 @@ import com.dft3dev.data.BuildConfig
 import dagger.Module
 import dagger.Provides
 import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.http.HTTP
+import timber.log.Timber
 import javax.inject.Singleton
 
 /**
@@ -36,6 +39,8 @@ class NetworkModule {
             val request = requestBuilder.build()
             chain.proceed(request)
         }
+
+        httpClientBuilder.addInterceptor(HttpLoggingInterceptor(HttpLoggingInterceptor.Logger { message -> Timber.tag("OkHttp").d(message) }))
 
         return httpClientBuilder.build()
     }
