@@ -1,5 +1,6 @@
 package com.dft3dev.cleanmovies.presenter
 
+import android.util.Log
 import com.dft3dev.cleanmovies.internal.di.PerActivity
 import com.dft3dev.cleanmovies.mapper.MovieMapper
 import com.dft3dev.cleanmovies.view.MainView
@@ -33,22 +34,25 @@ class MainPresenter @Inject constructor(private val getMovieById: GetMovieById, 
         this.mainView = view
     }
 
-    fun onLoadRandomeMovieButtonClicked() {
+    fun onLoadRandomMovieButtonClicked() {
 
         val random = Random()
-        val randomId = random.nextInt(1000)
+        var randomId = random.nextInt(1000)
+        randomId = 481
 
         getMovieById.execute(object : DisposableObserver<Movie>() {
             override fun onError(e: Throwable) {
+                Log.d("MOVIE", "onError: " + e.message)
             }
 
             override fun onNext(movie: Movie) {
 
                 mainView?.showMovieTitle(movie.title)
-                mainView?.logMovie(MovieMapper().map(movie))
+                mainView?.logMovie(movieDataMapper.map(movie))
             }
 
             override fun onComplete() {
+                Log.d("MOVIE", "onComplete: ")
             }
 
         }, randomId)

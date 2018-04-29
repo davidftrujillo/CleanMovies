@@ -24,6 +24,11 @@ class NetworkModule {
 
         val httpClientBuilder = OkHttpClient.Builder()
 
+//        val httpLoggingInterceptor = HttpLoggingInterceptor(HttpLoggingInterceptor.Logger { message -> Timber.tag("OkHttp").d(message) })
+        val httpLoggingInterceptor = HttpLoggingInterceptor()
+        httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
+        httpClientBuilder.addInterceptor(httpLoggingInterceptor)
+
         httpClientBuilder.addInterceptor { chain ->
             val original = chain?.request()
             val originalHttpUrl = original?.url()
@@ -39,8 +44,6 @@ class NetworkModule {
             val request = requestBuilder.build()
             chain.proceed(request)
         }
-
-        httpClientBuilder.addInterceptor(HttpLoggingInterceptor(HttpLoggingInterceptor.Logger { message -> Timber.tag("OkHttp").d(message) }))
 
         return httpClientBuilder.build()
     }

@@ -10,6 +10,6 @@ import retrofit2.http.Path
  */
 interface ApiService {
 
-    @GET("getMovie/{id}")
+    @GET("movie/{id}")
     fun getMovieById(@Path("id") id: Int): Observable<MovieEntity>
 }

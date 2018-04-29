@@ -34,7 +34,7 @@ class MainActivity : BaseActivity(), MainView, HasComponent<MovieComponent> {
         button.setOnClickListener {
 
             if (presenter != null) {
-                presenter.onLoadRandomeMovieButtonClicked()
+                presenter.onLoadRandomMovieButtonClicked()
             }
         }
 
