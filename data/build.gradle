@@ -4,6 +4,8 @@ apply plugin: 'kotlin-android'
 
 apply plugin: 'kotlin-android-extensions'
 
+apply plugin: 'kotlin-kapt'
+
 android {
     compileSdkVersion rootProject.compileSdkVersion
 
@@ -38,7 +40,6 @@ android {
 // Versions
 ext {
     supportLibraryVersion = '27.1.0'
-    retrofitVersion = '2.4.0'
     okHttpVersion = '3.10.0'
     gsonVersion = '2.8.2'
 }

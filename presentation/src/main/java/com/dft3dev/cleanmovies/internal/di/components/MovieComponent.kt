@@ -13,7 +13,7 @@ import dagger.Component
  */
 @PerActivity
 @Component(dependencies = arrayOf(ApplicationComponent::class), modules = arrayOf(ActivityModule::class, MovieModule::class))
-interface MovieComponent {
+interface MovieComponent: ActivityComponent {
 
     fun inject(mainActivity: MainActivity)
 }

@@ -5,10 +5,12 @@ import android.content.Context
 import com.dft3dev.cleanmovies.internal.di.modules.ApplicationModule
 import com.dft3dev.data.network.ApiService
 import com.dft3dev.data.network.NetworkComponent
+import com.dft3dev.data.network.NetworkModule
 import com.dft3dev.domain.executor.PostExecutionThread
 import com.dft3dev.domain.executor.ThreadExecutor
 import com.dft3dev.domain.repository.MovieRepository
 import dagger.Component
+import retrofit2.Retrofit
 import javax.inject.Singleton
 
 /**
@@ -17,7 +19,7 @@ import javax.inject.Singleton
  * A component whose lifetime is the life of the application
  */
 @Singleton
-@Component(modules = arrayOf(ApplicationModule::class))
+@Component(modules = arrayOf(ApplicationModule::class, NetworkModule::class))
 interface ApplicationComponent {
 
     fun inject(activity: Activity)

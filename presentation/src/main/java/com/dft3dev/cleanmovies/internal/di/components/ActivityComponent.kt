@@ -3,6 +3,7 @@ package com.dft3dev.cleanmovies.internal.di.components
 import android.app.Activity
 import com.dft3dev.cleanmovies.internal.di.PerActivity
 import com.dft3dev.cleanmovies.internal.di.modules.ActivityModule
+import com.dft3dev.data.network.NetworkComponent
 import dagger.Component
 
 /**

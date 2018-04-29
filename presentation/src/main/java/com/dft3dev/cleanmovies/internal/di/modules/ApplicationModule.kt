@@ -10,6 +10,7 @@ import com.dft3dev.domain.executor.ThreadExecutor
 import com.dft3dev.domain.repository.MovieRepository
 import dagger.Module
 import dagger.Provides
+import retrofit2.Retrofit
 import javax.inject.Singleton
 
 /**
