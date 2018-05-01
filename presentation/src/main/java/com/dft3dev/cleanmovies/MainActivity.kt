@@ -31,10 +31,17 @@ class MainActivity : BaseActivity(), MainView, HasComponent<MovieComponent> {
     override fun onPostResume() {
         super.onPostResume()
 
-        button.setOnClickListener {
+        buttonSingleMovie.setOnClickListener {
 
             if (presenter != null) {
                 presenter.onLoadRandomMovieButtonClicked()
+            }
+        }
+
+        buttonUpcoming.setOnClickListener {
+
+            if (presenter != null) {
+                presenter.onLoadUpcomingMoviesButtonClicked()
             }
         }
 

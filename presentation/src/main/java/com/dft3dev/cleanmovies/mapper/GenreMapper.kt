@@ -14,15 +14,15 @@ class GenreMapper @Inject constructor(): Mapper<GenreView, Genre>{
         return GenreView(genre.id, genre.name)
     }
 
-    override fun mapCollection(genres: List<Genre>): List<GenreView>? {
+    override fun mapCollection(genres: List<Genre>?): List<GenreView>? {
 
         var genreViews: List<GenreView>? = null
 
-        if (genres.isNotEmpty()) {
+        if (genres?.orEmpty()!!.isNotEmpty()) {
 
             genreViews = ArrayList()
 
-            genres.mapTo(genreViews) { map(it) }
+            genres?.mapTo(genreViews) { map(it) }
         }
 
         return genreViews

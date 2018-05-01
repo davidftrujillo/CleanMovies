@@ -9,9 +9,9 @@ import io.reactivex.observers.DisposableObserver
 import io.reactivex.schedulers.Schedulers
 
 /**
- * Created by david on 27/4/18.
+ * Created by david on 1/5/18.
  */
-abstract class UseCase<T, in Params>(
+abstract class UseCaseArgumentless<T>(
         private val threadExecutor: ThreadExecutor,
         private val postExecutionThread: PostExecutionThread) {
 
@@ -20,7 +20,7 @@ abstract class UseCase<T, in Params>(
     /**
      * Builds an {@link Observable} which will be used when executing the current {@link UseCase}
      */
-    abstract fun buildUseCaseObservable(params: Params): Observable<T>
+    abstract fun buildUseCaseObservable(): Observable<T>
 
     /**
      * Executes the current use case
@@ -29,9 +29,9 @@ abstract class UseCase<T, in Params>(
      * by {@link #buildUseCaseObservable(Params)} ()} method
      * @param params Parameters (optional) used to build/execute this use case
      */
-    fun execute(observer: DisposableObserver<T>, params: Params) {
+    fun execute(observer: DisposableObserver<T>) {
 
-        val observable = this.buildUseCaseObservable(params)
+        val observable = this.buildUseCaseObservable()
                 .subscribeOn(Schedulers.from(threadExecutor))
                 .observeOn(postExecutionThread.getScheduler())
         addDisposable(observable.subscribeWith(observer))

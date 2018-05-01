@@ -13,13 +13,13 @@ class MovieMapper @Inject constructor(): Mapper<MovieView, Movie> {
 
         return MovieView(
                 movie.adult,
-                movie.backdropPath,
+                movie.backdropPath.orEmpty(),
                 GenreMapper().mapCollection(movie.genres),
                 movie.id,
                 movie.originalLanguage,
                 movie.originalTitle,
                 movie.overview,
-                movie.posterPath,
+                movie.posterPath.orEmpty(),
                 movie.releaseDate,
                 movie.title,
                 movie.voteAverage,
@@ -27,11 +27,11 @@ class MovieMapper @Inject constructor(): Mapper<MovieView, Movie> {
         )
     }
 
-    override fun mapCollection(movies: List<Movie>): List<MovieView>? {
+    override fun mapCollection(movies: List<Movie>?): List<MovieView>? {
 
         var movieViews: List<MovieView>? = null
 
-        if (movies.isNotEmpty()) {
+        if (movies?.orEmpty()!!.isNotEmpty()) {
 
             movieViews = ArrayList()
 

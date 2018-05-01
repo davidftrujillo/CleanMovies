@@ -1,6 +1,7 @@
 package com.dft3dev.data.repository.datasource
 
 import com.dft3dev.data.model.MovieEntity
+import com.dft3dev.data.model.response.UpcomingMoviesResponse
 import com.dft3dev.data.network.ApiService
 import com.dft3dev.data.network.DaggerNetworkComponent
 import io.reactivex.Observable
@@ -12,13 +13,15 @@ import javax.inject.Inject
  */
 class RemoteMovieDataSource @Inject constructor(val retrofit: Retrofit): MovieDataSource {
 
-//    @Inject lateinit var retrofit: Retrofit
-
     override fun getMovie(id: Int): Observable<MovieEntity> {
 
         DaggerNetworkComponent.builder().build().inject(this)
         return retrofit.create(ApiService::class.java).getMovieById(id)
-//        return ApiClient().apiService()!!.getMovieById(id)
-//        return apiService.getMovieById(id).doOnNext(/* Save into local storage */)
+    }
+
+    override fun getUpcoming(): Observable<UpcomingMoviesResponse> {
+
+        DaggerNetworkComponent.builder().build().inject(this)
+        return retrofit.create(ApiService::class.java).getUpcoming()
     }
 }

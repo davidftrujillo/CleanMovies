@@ -11,4 +11,6 @@ import io.reactivex.Observable
 interface MovieRepository {
 
     fun getMovie(id: Int): Observable<Movie>
+
+    fun getUpcoming(): Observable<List<Movie>>
 }

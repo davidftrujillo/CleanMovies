@@ -6,6 +6,7 @@ import com.dft3dev.cleanmovies.mapper.MovieMapper
 import com.dft3dev.cleanmovies.view.MainView
 import com.dft3dev.domain.Movie
 import com.dft3dev.domain.interactor.GetMovieById
+import com.dft3dev.domain.interactor.GetUpcomingMovies
 import io.reactivex.observers.DisposableObserver
 import java.util.*
 import javax.inject.Inject
@@ -14,7 +15,8 @@ import javax.inject.Inject
  * Created by david on 29/4/18.
  */
 @PerActivity
-class MainPresenter @Inject constructor(private val getMovieById: GetMovieById, private val movieDataMapper: MovieMapper): BasePresenter {
+class MainPresenter @Inject constructor(private val getMovieById: GetMovieById, private val getUpcomingMovies: GetUpcomingMovies,
+                                        private val movieDataMapper: MovieMapper): BasePresenter {
 
     private var mainView: MainView? = null
 
@@ -38,7 +40,6 @@ class MainPresenter @Inject constructor(private val getMovieById: GetMovieById, 
 
         val random = Random()
         var randomId = random.nextInt(1000)
-        randomId = 481
 
         getMovieById.execute(object : DisposableObserver<Movie>() {
             override fun onError(e: Throwable) {
@@ -56,6 +57,26 @@ class MainPresenter @Inject constructor(private val getMovieById: GetMovieById, 
             }
 
         }, randomId)
+    }
+
+    fun onLoadUpcomingMoviesButtonClicked() {
+
+        getUpcomingMovies.execute(object : DisposableObserver<List<Movie>>() {
+
+            override fun onComplete() {
+
+                Log.d("UPCOMING MOVIE", "onComplete: ")
+            }
+
+            override fun onNext(movies: List<Movie>) {
+
+                movies.forEach { mainView?.logMovie(movieDataMapper.map(it)) }
+            }
+
+            override fun onError(e: Throwable) {
+                Log.d("UPCOMING MOVIE", "onError: " + e.message)
+            }
+        })
     }
 
 }

@@ -1,6 +1,7 @@
 package com.dft3dev.data.repository.datasource
 
 import com.dft3dev.data.model.MovieEntity
+import com.dft3dev.data.model.response.UpcomingMoviesResponse
 import io.reactivex.Observable
 
 /**
@@ -13,5 +14,5 @@ interface MovieDataSource {
 
     fun getMovie(id: Int): Observable<MovieEntity>
 
-//    fun getUpcoming(): Observable<List<MovieEntity>>
+    fun getUpcoming(): Observable<UpcomingMoviesResponse>
 }
