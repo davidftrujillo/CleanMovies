@@ -16,11 +16,11 @@ class GenreEntityMapper @Inject constructor() {
         return Genre(genre.id, genre.name)
     }
 
-    fun mapCollection(genres: Collection<GenreEntity>): List<Genre> {
+    fun mapCollection(genres: Collection<GenreEntity>?): List<Genre> {
 
         val genreList = ArrayList<Genre>()
 
-        genres.mapNotNullTo(genreList) { map(it) }
+        genres?.mapNotNullTo(genreList) { map(it) }
 
         return genreList
     }

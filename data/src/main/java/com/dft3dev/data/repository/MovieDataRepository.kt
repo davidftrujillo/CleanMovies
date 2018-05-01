@@ -8,6 +8,7 @@ import com.dft3dev.domain.Movie
 import com.dft3dev.domain.repository.MovieRepository
 import io.reactivex.Completable
 import io.reactivex.Observable
+import timber.log.Timber
 import javax.inject.Inject
 
 /**
@@ -35,8 +36,32 @@ class MovieDataRepository @Inject constructor(
                 }
     }
 
+    override fun getUpcoming(): Observable<List<Movie>> {
+
+        val dataSource = factory.getRemoteDataSource()
+
+        return dataSource.getUpcoming()
+                .flatMap {
+                    saveMovies(it.results).toSingleDefault(it).toObservable()
+                }
+                .map {
+                    this.movieMapper.mapCollection(it.results)
+                }
+    }
+
+    private fun saveMovies(movies: List<MovieEntity>): Completable {
+
+        for (movie in movies) {
+
+            saveMovie(movie)
+        }
+
+        return Completable.complete()
+    }
+
     private fun saveMovie(movie: MovieEntity): Completable {
 
+        Timber.tag("SAVE_MOVIE").d("Saving movie '" + movie.title + "'")
         return Completable.complete()
     }
 }

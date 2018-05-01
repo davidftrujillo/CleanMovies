@@ -12,5 +12,5 @@ interface Mapper<out V, in D> {
 
     fun map(type: D): V
 
-    fun mapCollection(type: List<D>): List<V>?
+    fun mapCollection(type: List<D>?): List<V>?
 }
