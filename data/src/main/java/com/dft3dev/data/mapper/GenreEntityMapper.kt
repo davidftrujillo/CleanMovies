@@ -16,7 +16,7 @@ class GenreEntityMapper @Inject constructor() {
         return Genre(genre.id, genre.name)
     }
 
-    fun mapCollection(genres: Collection<GenreEntity>): Collection<Genre> {
+    fun mapCollection(genres: Collection<GenreEntity>): List<Genre> {
 
         val genreList = ArrayList<Genre>()
 

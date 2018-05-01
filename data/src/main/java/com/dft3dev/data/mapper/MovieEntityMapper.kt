@@ -18,4 +18,13 @@ class MovieEntityMapper @Inject constructor() {
                 movie.id, movie.originalLanguage, movie.originalTitle, movie.overview, movie.posterPath,
                 movie.releaseDate, movie.title, movie.voteAverage, movie.voteCount)
     }
+
+    fun mapCollection(movies: Collection<MovieEntity>): List<Movie> {
+
+        val movieList = ArrayList<Movie>()
+
+        movies.mapNotNullTo(movieList) { map(it) }
+
+        return movieList
+    }
 }
