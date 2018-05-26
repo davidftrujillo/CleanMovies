@@ -30,7 +30,7 @@ class NetworkModule {
         httpClientBuilder.addInterceptor(httpLoggingInterceptor)
 
         httpClientBuilder.addInterceptor { chain ->
-            val original = chain?.request()
+            val original = chain.request()
             val originalHttpUrl = original?.url()
 
             val url = originalHttpUrl?.newBuilder()!!
