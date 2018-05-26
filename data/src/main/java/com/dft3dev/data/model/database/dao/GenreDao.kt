@@ -1,4 +1,4 @@
-package com.dft3dev.data.model.dao
+package com.dft3dev.data.model.database.dao
 
 import android.arch.persistence.room.Dao
 import android.arch.persistence.room.Query
