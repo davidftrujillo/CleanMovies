@@ -7,7 +7,7 @@ import com.dft3dev.data.model.MovieEntity
 import com.dft3dev.data.model.database.dao.GenreDao
 import com.dft3dev.data.model.database.dao.MovieDao
 
-@Database(entities = [GenreEntity::class, MovieEntity::class], version = 1)
+@Database(entities = [GenreEntity::class, MovieEntity::class], version = 2)
 abstract class CleanMovieDatabase: RoomDatabase() {
 
     abstract fun genreDao(): GenreDao

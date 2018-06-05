@@ -13,7 +13,9 @@ class DatabaseModule {
     @Provides
     @Singleton
     fun provideDatabase(context: Context): CleanMovieDatabase =
-            Room.databaseBuilder(context, CleanMovieDatabase::class.java, "CleanMovieDatabase").build()
+            Room.databaseBuilder(context, CleanMovieDatabase::class.java, "CleanMovieDatabase")
+                    .fallbackToDestructiveMigration()
+                    .build()
 
     @Provides
     @Singleton
