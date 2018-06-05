@@ -2,13 +2,13 @@ package com.dft3dev.data.repository
 
 import com.dft3dev.data.mapper.MovieEntityMapper
 import com.dft3dev.data.model.MovieEntity
+import com.dft3dev.data.model.database.dao.MovieDao
 import com.dft3dev.data.repository.datasource.MovieDataStoreFactory
 import com.dft3dev.data.repository.datasource.RemoteMovieDataSource
 import com.dft3dev.domain.Movie
 import com.dft3dev.domain.repository.MovieRepository
 import io.reactivex.Completable
 import io.reactivex.Observable
-import timber.log.Timber
 import javax.inject.Inject
 
 /**
@@ -16,7 +16,8 @@ import javax.inject.Inject
  */
 class MovieDataRepository @Inject constructor(
         private val factory: MovieDataStoreFactory,
-        private val movieMapper: MovieEntityMapper): MovieRepository {
+        private val movieMapper: MovieEntityMapper,
+        private val movieDao: MovieDao): MovieRepository {
 
     override fun getMovie(id: Int): Observable<Movie> {
 
@@ -51,9 +52,9 @@ class MovieDataRepository @Inject constructor(
 
     private fun saveMovies(movies: List<MovieEntity>): Completable {
 
-        for (movie in movies) {
 
-            saveMovie(movie)
+        for (movie in movies) {
+            movieDao.insert(movie)
         }
 
         return Completable.complete()
@@ -61,7 +62,8 @@ class MovieDataRepository @Inject constructor(
 
     private fun saveMovie(movie: MovieEntity): Completable {
 
-        Timber.tag("SAVE_MOVIE").d("Saving movie '" + movie.title + "'")
+        movieDao.insert(movie)
+
         return Completable.complete()
     }
 }

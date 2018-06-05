@@ -14,7 +14,7 @@ class MovieEntityMapper @Inject constructor() {
 
     fun map(movie: MovieEntity): Movie {
 
-        return Movie(movie.adult, movie.backdropPath, GenreEntityMapper().mapCollection(movie.genres.orEmpty()),
+        return Movie(movie.adult, movie.backdropPath, GenreEntityMapper().mapCollection(emptyList()/*movie.genres.orEmpty()*/),
                 movie.id, movie.originalLanguage, movie.originalTitle, movie.overview, movie.posterPath,
                 movie.releaseDate, movie.title, movie.voteAverage, movie.voteCount)
     }

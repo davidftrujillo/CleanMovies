@@ -4,13 +4,13 @@ import android.app.Application
 import android.content.Context
 import com.dft3dev.cleanmovies.UIThread
 import com.dft3dev.data.executor.JobExecutor
+import com.dft3dev.data.model.database.dao.MovieDao
 import com.dft3dev.data.repository.MovieDataRepository
 import com.dft3dev.domain.executor.PostExecutionThread
 import com.dft3dev.domain.executor.ThreadExecutor
 import com.dft3dev.domain.repository.MovieRepository
 import dagger.Module
 import dagger.Provides
-import retrofit2.Retrofit
 import javax.inject.Singleton
 
 /**

@@ -13,7 +13,7 @@ data class MovieEntity(
         val id: Int,
         val adult: Boolean,
         @SerializedName("backdrop_path") val backdropPath: String,
-        val genres: List<GenreEntity>?,
+//        val genres: List<GenreEntity>?,
         @SerializedName("original_language") val originalLanguage: String,
         @SerializedName("original_title") val originalTitle: String,
         val overview: String,
