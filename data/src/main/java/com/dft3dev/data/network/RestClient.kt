@@ -24,7 +24,7 @@ object RestClient {
         val httpClientBuilder = OkHttpClient.Builder()
 
         httpClientBuilder.addInterceptor { chain ->
-            val original = chain?.request()
+            val original = chain.request()
             val originalHttpUrl = original?.url()
 
             val url = originalHttpUrl?.newBuilder()!!

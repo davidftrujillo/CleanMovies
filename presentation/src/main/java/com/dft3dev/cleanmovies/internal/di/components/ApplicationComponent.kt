@@ -3,6 +3,8 @@ package com.dft3dev.cleanmovies.internal.di.components
 import android.app.Activity
 import android.content.Context
 import com.dft3dev.cleanmovies.internal.di.modules.ApplicationModule
+import com.dft3dev.data.internal.di.modules.DatabaseModule
+import com.dft3dev.data.model.database.dao.MovieDao
 import com.dft3dev.data.network.ApiService
 import com.dft3dev.data.network.NetworkComponent
 import com.dft3dev.data.network.NetworkModule
@@ -19,7 +21,7 @@ import javax.inject.Singleton
  * A component whose lifetime is the life of the application
  */
 @Singleton
-@Component(modules = arrayOf(ApplicationModule::class, NetworkModule::class))
+@Component(modules = [(ApplicationModule::class), (NetworkModule::class), (DatabaseModule::class)])
 interface ApplicationComponent {
 
     fun inject(activity: Activity)
