@@ -52,7 +52,6 @@ class MovieDataRepository @Inject constructor(
 
     private fun saveMovies(movies: List<MovieEntity>): Completable {
 
-
         for (movie in movies) {
             movieDao.insert(movie)
         }

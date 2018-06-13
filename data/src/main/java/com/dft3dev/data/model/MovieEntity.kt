@@ -1,7 +1,6 @@
 package com.dft3dev.data.model
 
-import android.arch.persistence.room.Entity
-import android.arch.persistence.room.PrimaryKey
+import android.arch.persistence.room.*
 import com.google.gson.annotations.SerializedName
 
 /**
@@ -10,16 +9,20 @@ import com.google.gson.annotations.SerializedName
 @Entity(tableName = "Movie")
 data class MovieEntity(
         @PrimaryKey
-        val id: Int,
-        val adult: Boolean,
-        @SerializedName("backdrop_path") val backdropPath: String,
-//        val genres: List<GenreEntity>?,
-        @SerializedName("original_language") val originalLanguage: String,
-        @SerializedName("original_title") val originalTitle: String,
-        val overview: String,
-        @SerializedName("poster_path") val posterPath: String,
-        @SerializedName("release_date") val releaseDate: String,
-        val title: String,
-        @SerializedName("vote_average") val voteAverage: Float,
-        @SerializedName("vote_count") val voteCount: Int
-)
+        var id: Int,
+        var adult: Boolean,
+        @SerializedName("backdrop_path") var backdropPath: String,
+        @Ignore var genres: List<GenreEntity>,
+        @SerializedName("genre_ids") var genreIds: List<String>,
+        @SerializedName("original_language") var originalLanguage: String,
+        @SerializedName("original_title") var originalTitle: String,
+        var overview: String,
+        @SerializedName("poster_path") var posterPath: String,
+        @SerializedName("release_date") var releaseDate: String,
+        var title: String,
+        @SerializedName("vote_average") var voteAverage: Float,
+        @SerializedName("vote_count") var voteCount: Int
+) {
+    constructor():this(0, false, "", ArrayList<GenreEntity>(), mutableListOf(), "", "","",
+            "", "", "", 0f, 0)
+}

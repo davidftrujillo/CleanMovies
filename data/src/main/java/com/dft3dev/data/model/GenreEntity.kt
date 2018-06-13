@@ -9,6 +9,8 @@ import android.arch.persistence.room.PrimaryKey
 @Entity(tableName = "Genre")
 data class GenreEntity(
         @PrimaryKey
-        val id: Int,
-        val name: String
-)
+        var id: Int,
+        var name: String
+) {
+    constructor(): this(0, "")
+}
