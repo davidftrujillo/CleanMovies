@@ -8,7 +8,7 @@ import android.arch.persistence.room.ForeignKey
     primaryKeys = ["movieId", "genreId"],
     foreignKeys = [(ForeignKey(entity = MovieEntity::class, parentColumns = arrayOf("id"), childColumns = arrayOf("movieId")))]
 )
-data class MovieGenreRelation(
+data class MovieGenreJoin(
         val movieId: Int,
         val genreId: Int
 )
