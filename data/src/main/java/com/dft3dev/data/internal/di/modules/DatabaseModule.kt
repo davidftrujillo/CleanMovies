@@ -23,5 +23,9 @@ class DatabaseModule {
 
     @Provides
     @Singleton
+    fun provideGenreDao(database: CleanMovieDatabase) = database.genreDao()
+
+    @Provides
+    @Singleton
     fun provideMovieGenreJoinDao(database: CleanMovieDatabase) = database.genreMovieJoinDao()
 }

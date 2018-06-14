@@ -2,7 +2,10 @@ package com.dft3dev.data.repository
 
 import com.dft3dev.data.mapper.MovieEntityMapper
 import com.dft3dev.data.model.MovieEntity
+import com.dft3dev.data.model.MovieGenre
+import com.dft3dev.data.model.database.dao.GenreDao
 import com.dft3dev.data.model.database.dao.MovieDao
+import com.dft3dev.data.model.database.dao.MovieGenreJoinDao
 import com.dft3dev.data.repository.datasource.MovieDataStoreFactory
 import com.dft3dev.data.repository.datasource.RemoteMovieDataSource
 import com.dft3dev.domain.Movie
@@ -17,7 +20,9 @@ import javax.inject.Inject
 class MovieDataRepository @Inject constructor(
         private val factory: MovieDataStoreFactory,
         private val movieMapper: MovieEntityMapper,
-        private val movieDao: MovieDao): MovieRepository {
+        private val movieDao: MovieDao,
+        private val genreDao: GenreDao,
+        private val movieGenreDao: MovieGenreJoinDao): MovieRepository {
 
     override fun getMovie(id: Int): Observable<Movie> {
 
@@ -62,6 +67,12 @@ class MovieDataRepository @Inject constructor(
     private fun saveMovie(movie: MovieEntity): Completable {
 
         movieDao.insert(movie)
+
+        movie.genres?.forEach {
+
+            genreDao.insert(it)
+            movieGenreDao.insert(MovieGenre(movie.id, it.id))
+        }
 
         return Completable.complete()
     }
